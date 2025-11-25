@@ -20,7 +20,7 @@ main {
     display: grid;
     /* Ottimo uso di auto-fit per creare colonne responsive (min 300px) */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px; /* Spazio tra le figure */
+    gap: 40px; /* Spazio tra le figure */
     justify-items: center; /* Centra orizzontalmente gli elementi all'interno della cella */
 
     /* CRUCIALE per l'Accordion: 
@@ -34,10 +34,6 @@ main {
 figure {
     margin: 0; 
     padding: 0;
-    border: 1px solid #696969;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-
     height: auto; 
     min-height: unset;
     pointer-events: auto; /* Assicura che la figura sia interattiva */
@@ -53,6 +49,10 @@ figure img {
     /* Stile bordi dalla regola 'main img', se volevi applicarli solo qui: */
     border: black solid 2px;
     margin: 1px;
+
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 /* Didascalia sotto l'immagine */
@@ -60,6 +60,15 @@ figcaption {
     text-align: center;
     font-weight: bold;
     padding: 5px; /* Aggiunto un po' di padding per estetica */
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+    margin-top: -2px;
+
+    border: black solid 2px;
 }
 
 /* Rimuovi la sottolineatura e mantieni il colore ereditato per i link */
@@ -68,3 +77,33 @@ a{
     color: inherit;
 }
 
+/* === BUTTONS === */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgb(0, 0, 0);
+}
+
+.btn:active {
+    transform: scale(0.70);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.5);
+}

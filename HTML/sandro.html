@@ -1,10 +1,11 @@
-<html>
+<!DOCTYPE html>
 <html lang="it">
     <head>
         <meta charset="UTF-8">
         <title>Sandro</title>
         <link rel="stylesheet" href="../CSS/pag_cugini.css">
     </head>
+    
     <body>
         <header>
             <h1><strong>La Silviopedia</strong></h1>
@@ -12,34 +13,38 @@
 
         <main>
             <div class="container">
-                <div class="image">
+                
+                <div class="image-group"> 
+                    <div class="image-wrapper">
+                        <img src="../image/cugini/Sandro.jpg" id="image">
+                    </div>
 
-                    <img src="../image/cugini/Sandro.jpg" alt="Sandro" class="left" id="image">
-                    <figcaption id = "caption"><h2><strong>Sandro</strong></h2></figcaption>          
-                </div>
+                    <div id="zoom-window"></div> 
 
+                    <figcaption id="caption"><h2><strong>Sandro</strong></h2></figcaption>
+                </div> 
+                
                 <div class="description">
-                    
                     <h3>Descrizione</h3>
                     <p>Fratello di Sabino. Non ama socializzare con le persone che Sabino porta a casa.</p>
 
                     <hr>
 
-
+                    <div id="miaGalleria"></div>
                 </div>
 
                 <div class="link-back">
                     <a href="../index.html" class="btn" id="backButton">Torna Indietro</a>
                 </div>
             </div> 
-
-            <script src="../scripts/history_back.js"></script>
-
         </main>
 
         <footer>
-            <p class = "footer-silviopedia">© 2024 Silviopedia. Tutti i diritti riservati.</p>
+            <p class="footer-silviopedia">© 2024 Silviopedia. Tutti i diritti riservati.</p>
         </footer>
+        
+        <script src="../scripts/history_back.js"></script>
+        <script src="../scripts/image.js"></script>
         
     </body>
 </html>

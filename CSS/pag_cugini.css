@@ -2,8 +2,8 @@
 
 /* Contenitore principale della pagina */
 body {
-    margin: 0px;  
-    min-height: 100vh; /* Assicura che il body occupi almeno l'altezza della viewport */
+    margin: 0px;
+    min-height: 100vh;
 }
 
 /* Stile dell'Area Contenuto Principale */
@@ -17,25 +17,71 @@ main {
     width: 90%;
 }
 
-#image {
-    align-items: left;
-    border: white solid 1px;
-    margin: 20px;
-    width: 400px;
-    height: 400px;
-    border-radius: 200px;
-    margin-top: 40px;
-    flex-shrink: 0;
-    margin-left: 60px;
+.container {
+    display: flex;
+    align-items: flex-start; 
+    gap: 20px;
+    background-color: rgb(108, 183, 212);
+    position: relative; 
+    
+    /* Gestisce lo spazio fisso (60px sinistra, 40px sopra) */
+    padding-bottom: 80px; 
+    padding-top: 40px;     
+    padding-left: 60px;    
 }
 
-.container {
-    display: flex;   
-    align-items: flex-start; 
-    gap: 20px;             
-    background-color: rgb(108, 183, 212);
-    position: relative; /* Necessario per il posizionamento assoluto del link */
-    padding-bottom: 80px; /* Spazio per il link, evita che tocchi il contenuto sopra */
+/* --- RAGGRUPPA IMMAGINE E DIDASCALIA IN COLONNA --- */
+.image-group {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    
+    /* Rimuoviamo i margini: lo spazio è gestito dal padding del .container */
+    margin-left: 0; 
+    margin-top: 0; 
+    
+    flex-shrink: 0;
+    position: relative; 
+}
+
+/* --- STILI IMMAGINE BASE (Il Cerchio) --- */
+.image-wrapper {
+    width: 400px;
+    height: 400px;
+    border-radius: 200px; 
+    overflow: hidden; 
+    border: white solid 1px;
+    margin: 0; 
+    padding: 0;
+}
+
+/* L'immagine interna deve adattarsi al contenitore */
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; 
+}
+
+/* --- FINESTRA ZOOM (#zoom-window) --- */
+#zoom-window {
+    width: 400px; 
+    height: 400px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    border-radius: 200px; 
+    
+    position: absolute; 
+    z-index: 1000; 
+
+    /* CORREZIONE: Nessuna compensazione, allineamento base */
+    top: 0; 
+    left: 0; 
+    
+    overflow: hidden; 
+    display: none; 
+    
+    background-repeat: no-repeat;
 }
 
 .description {
@@ -49,38 +95,30 @@ main {
     margin-bottom: 100px;
 }
 
-.image img {
-    flex-basis: 30%;
-    max-width: 100%;
-    height: auto;       
-    display: block;  
-    object-fit: fill;     
-}
-
 #caption {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    margin-left: 60px;
-    margin-top: 0px;
+    display: block; 
+    margin-top: 10px; 
+    margin-bottom: 20px;
+    margin-left: 0; 
+    text-align: center;
 }
 
 h2 {
-    text-align: left;
+    text-align: center; 
     font-size: 40px;
 }
 
-.link-back {   
-    position: absolute; /* Posizionamento assoluto relativo a .container */
-    bottom: 30px; /* Distanza dal basso del container */
-    left: 50%; /* Centra orizzontalmente */
-    transform: translateX(-50%); /* Aggiusta per centrare perfettamente */
-    text-align: center; /* Centra il contenuto interno */
-    background-color: rgba(108, 183, 212, 0.1); /* Sfondo leggero */
-    width: auto; /* Larghezza automatica basata sul contenuto */
+.link-back {
+    position: absolute; 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    text-align: center; 
+    background-color: rgba(108, 183, 212, 0.1); 
+    width: auto; 
 }
 
-    /* === BUTTONS === */
+/* === BUTTONS === */
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
@@ -90,7 +128,6 @@ h2 {
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
-    text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: bold;
     text-align: center;
@@ -98,7 +135,7 @@ h2 {
 }
 
 .btn:hover {
-    transform: scale(1.1) translateY(-3px);  ;
+    transform: scale(1.1) translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border-color: rgb(0, 0, 0);
 }
@@ -107,12 +144,17 @@ h2 {
     transform: scale(0.70);
 }
 
+/* === MEDIA QUERY (MOBILE) === */
 @media (max-width: 1100px) {
     .container {
         flex-direction: column;
         align-items: center;
-        margin-left: 10px;
-        padding-bottom: 60px; /* Riduci lo spazio su mobile */
+        
+        /* Rimuoviamo i padding/margini fissi sul mobile per la centratura Flexbox */
+        margin-left: 0;
+        padding-left: 0; 
+        
+        padding-bottom: 60px; 
     }
 
     .description {
@@ -120,24 +162,8 @@ h2 {
         text-align: center;
     }
 
-    .image {
-        flex-direction: column;
-        align-items: center;
+    .image-group { 
         margin-left: 0;
         margin-right: 0;
     }
-
-    #caption{
-        flex-direction: column;
-        align-items: center;
-        margin-left: 0;
-        margin-right: 0;
-    
-    }
-
-    #image{
-        margin-right: 60px;
-    }
-
-
 }
